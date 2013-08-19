@@ -1,4 +1,4 @@
-// Generated on 2013-08-14 using generator-angular 0.3.1
+// Generated on 2013-08-18 using generator-angular 0.3.1
 'use strict';
 var LIVERELOAD_PORT = 35729;
 var lrSnippet = require('connect-livereload')({ port: LIVERELOAD_PORT });
@@ -51,9 +51,15 @@ module.exports = function (grunt) {
     },
     connect: {
       options: {
-        port: 9000,
+        base: 'app',
+        port: 8000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost'
+      },
+      preview:{
+        options:{
+          keepalive: true
+        }
       },
       livereload: {
         options: {
@@ -260,6 +266,11 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
+      },
+      unitwatch: {
+        configFile: 'karma.conf.js',
+        singleRun: false,
+        autoWatch: true
       }
     },
     cdnify: {
@@ -296,9 +307,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
-      'connect:livereload',
-      'open',
-      'watch'
+      'connect:preview'
     ]);
   });
 
@@ -306,8 +315,12 @@ module.exports = function (grunt) {
     'clean:server',
     'concurrent:test',
     'connect:test',
-    'karma'
+    'karma:unitwatch'
   ]);
+
+    grunt.registerTask('unit-watch', [
+        'karma:unitwatch'
+    ]);
 
   grunt.registerTask('build', [
     'clean:dist',

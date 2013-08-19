@@ -1,13 +1,3 @@
-'use strict';
-
-angular.module('website3xApp', [])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+define(['angular' , 'angular-resource'] , function (angular) {
+    return angular.module('website3xApp' , ['ngResource']);
+});

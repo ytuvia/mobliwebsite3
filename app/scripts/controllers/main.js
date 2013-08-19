@@ -1,10 +1,9 @@
-'use strict';
-
-angular.module('website3xApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+define(['app'], function(main){
+    main.controller('MainCtrl',['$scope', function($scope){
+        $scope.awesomeThings = [
+            'HTML5 Boilerplate',
+            'AngularJS',
+            'Karma'
+        ];
+    }]);
+});
