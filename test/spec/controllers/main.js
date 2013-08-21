@@ -1,4 +1,4 @@
-define(['app', 'angular', 'angular-resource', 'angular-mocks', 'controllers/main'], function() {
+define(['angularMocks', 'controllers/main'], function() {
     describe('Controller: MainCtrl', function () {
 
         // load the controller's module

@@ -1,22 +1,34 @@
-define(['app', function(app){
-    app.service('mobliConfig',['mobliConstants', '$log','$http', function(mobliConstants, $log, $http){
+define(['app','services/mobliConstants'], function(app){
+    app.service('mobliConfig',['mobliConstants', '$log','$http', '$q', function(mobliConstants, $log, $http, $q){
         var configObj = {
             configUrl: mobliConstants.CONFIG_URL,
             apiUrl: mobliConstants.API_URL,
             plugins: mobliConstants.PLUGINS
         };
 
-        $http.get(configObj.configUrl).then(
-            function(res){
-                configObj.extend(configObj, res.data);
-            },
-            function(res){
-                $log.error('failed to get application configuration from data-source:' + configObj.configUrl +' with result' + res);
-            }
-        );
+        var defer = $q.defer();
+
+        this.load = function(){
+            $http.get(configObj.configUrl).then(
+                function(res){
+                    angular.extend(configObj, res.data);
+                    defer.resolve(configObj);
+                },
+                function(res){
+                    $log.warn('failed to get application configuration from data-source. using fallback. datasource:' + configObj.configUrl +' with result' + res);
+                    defer.resolve(configObj);
+                }
+            );
+        };
+
+        this.getPromise = function(){
+            return defer.promise;
+        };
 
         this.getConfig = function(){
             return configObj;
         };
+
+        return this;
     }])
-}]);
+});

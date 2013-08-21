@@ -3,16 +3,20 @@ require.config({
   paths: {
     "components": "../bower_components",
     "angular": "../bower_components/angular/angular",
-    "angular-resource": "../bower_components/angular-resource/angular-resource",
-    "angular-mocks": "../bower_components/angular-mocks/angular-mocks",
+    "angularResource": "../bower_components/angular-resource/angular-resource",
+    "angularMocks": "../bower_components/angular-mocks/angular-mocks"
   },
   shim: {
-      'angular' : {'exports' : 'angular'},
-      'angular-resource': { deps:['angular']},
+      'angular' : {exports : 'angular'},
+      'angularResource': { deps:['angular'], exports:'angularResource'},
+      'angularMocks': { deps:['angular'], exports: 'angularMocks'}
   }
 });
 
-require(['angular', 'routes/mainRoutes'] , function (angular, mainRoutes) {
+require(['app', 'angular', 'routes/mainRoutes', 'services/mobliConfig'] , function (app, angular, mainRoutes) {
+    app.run(function(mobliConfig){
+        mobliConfig.load();
+    });
     angular.bootstrap(document , ['website3xApp']);
 });
 

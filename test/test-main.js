@@ -14,13 +14,13 @@ requirejs.config({
     paths: {
         "components": "../bower_components",
         "angular": "../bower_components/angular/angular",
-        "angular-resource": "../bower_components/angular-resource/angular-resource",
-        "angular-mocks": "../bower_components/angular-mocks/angular-mocks",
+        "angularMocks": "../bower_components/angular-mocks/angular-mocks",
+        "angularResource": "../bower_components/angular-resource/angular-resource"
     },
     shim: {
-        'angular' : {'exports' : 'angular'},
-        'angular-resource': { deps:['angular']},
-        'angular-mocks': { deps:['angular']},
+        'angular' : {exports : 'angular'},
+        'angularResource': { deps:['angular'], exports:'angularResource'},
+        'angularMocks': { deps:['angular'], exports: 'angularMocks'}
     },
 
     // ask Require.js to load these files (all our tests)
