@@ -1,7 +1,7 @@
 define(['angularMocks', 'services/mobliConstants'], function() {
     describe('Constants: mobliConstans', function () {
 
-        beforeEach(module('website3xApp'));
+        beforeEach(module('mobliWebApp'));
 
         var mobliConstants;
         beforeEach(inject(function($injector){
@@ -11,8 +11,6 @@ define(['angularMocks', 'services/mobliConstants'], function() {
         it('should have mandatory property', function(){
             expect(mobliConstants.CONFIG_URL).not.toEqual(null);
             expect(mobliConstants.API_URL).not.toEqual(null);
-            expect(mobliConstants.PLUGINS).not.toEqual(null);
-            expect(mobliConstants.PLUGINS.mobli).not.toEqual(null);
         });
     });
 });

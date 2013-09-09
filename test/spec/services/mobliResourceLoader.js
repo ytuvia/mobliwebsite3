@@ -1,19 +1,20 @@
-/*'use strict';
+define(['angularMocks', 'services/mobliResourceLoader'], function(){
+    describe('service: mobliResourceLoader', function(){
 
-describe('Service: mobliResourceLoader', function () {
+        beforeEach(module('mobliWebApp'));
 
-  // load the service's module
-  beforeEach(module('website3xApp'));
+        var mobliResourceLoader,
+            mobliConfig;
+        beforeEach(inject(function($injector){
+            mobliResourceLoader = $injector.get('mobliResourceLoader');
+            mobliConfig = $injector.get('mobliConfig');
+        }));
 
-  // instantiate service
-  var mobliResourceLoader;
-  beforeEach(inject(function (_mobliResourceLoader_) {
-    mobliResourceLoader = _mobliResourceLoader_;
-  }));
+        it('should have a getResource method that grabs a resource from the API', function(){
+            expect(mobliResourceLoader).not.toBeUndefined();
+            expect(mobliResourceLoader.getResource).not.toBeUndefined();
+            var resources = mobliConfig.config.resources;
+        });
 
-  it('should do something', function () {
-    expect(!!mobliResourceLoader).toBe(true);
-  });
-
+    });
 });
-*/

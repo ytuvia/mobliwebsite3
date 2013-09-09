@@ -2,7 +2,7 @@ define(['angularMocks', 'controllers/main'], function() {
     describe('Controller: MainCtrl', function () {
 
         // load the controller's module
-        beforeEach(module('website3xApp'));
+        beforeEach(module('mobliWebApp'));
 
         var MainCtrl,
             scope;
