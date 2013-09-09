@@ -2,8 +2,7 @@ define(['app','services/mobliConstants'], function(app){
     app.service('mobliConfig',['mobliConstants', '$log','$http', '$q', function(mobliConstants, $log, $http, $q){
         var configObj = {
             configUrl: mobliConstants.CONFIG_URL,
-            apiUrl: mobliConstants.API_URL,
-            plugins: mobliConstants.PLUGINS
+            apiUrl: mobliConstants.API_URL
         };
 
         var defer = $q.defer();
@@ -25,9 +24,7 @@ define(['app','services/mobliConstants'], function(app){
             return defer.promise;
         };
 
-        this.getConfig = function(){
-            return configObj;
-        };
+        this.config = configObj;
 
         return this;
     }])
